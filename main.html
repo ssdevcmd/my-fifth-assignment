@@ -61,10 +61,99 @@
 
 </nav>
 
+
+<section>
+  <div class="p-4">
+    <div class="flex items-center gap-4 justify-between w-full">
+
+      <!-- icon -->
+      <div class="w-10 h-10 flex items-center justify-center">
+        <img src="./assets/Aperture.png" alt="issues">
+      </div>
+
+      <!-- text -->
+      <div>
+        <h2 id="issues-counter" class="text-lg font-semibold text-gray-800">
+          50 Issues
+        </h2>
+        <p class="text-sm text-gray-500">
+          Track and manage your project issues
+        </p>
+      </div>
+
+      
+      <div class="flex items-center gap-4 ml-auto">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-circle text-green-700"></i>
+          <p>Open</p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-circle text-purple-500"></i>
+          <p>Closed</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- all card container -->
 <div id="issues-container"
 class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 </div>
+
+<!-- modal -->
+<div id="issue-modal" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+
+  <div class="bg-white w-[90%] p-6 rounded-xl shadow-lg">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center  pb-3">
+      <h2 id="modal-title" class="text-xl font-semibold"></h2>
+      <button onclick="closeModal()" class="btn btn-primary text-white-600 text-xl">Close</button>
+    </div>
+
+    <!-- Info Section -->
+    <div class="mt-4 space-y-3">
+
+      <div class="flex gap-3">
+        <span class="font-semibold"></span>
+        <p id="modal-status"></p>
+      </div>
+
+      <div class="flex gap-3">
+        <span class="font-semibold"></span>
+        <p id="modal-date"></p>
+      </div>
+
+      <div>
+        <span class="font-semibold"></span>
+        <div id="modal-labels" class="flex gap-2 mt-1 flex-wrap"></div>
+      </div>
+
+      <div>
+        <span class="font-semibold"></span>
+        <p id="modal-description" class="text-gray-600 mt-1"></p>
+      </div>
+
+
+      <div class="flex justify-between">
+        <span class="font-semibold">Assignee:</span>
+        <div id="modal-assignee" class="flex gap-2 mt-1 flex-wrap"></div>
+        
+      <div>
+        <span class="font-semibold"></span>
+        <p id="modal-priority"></p>
+      </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
 
 <script src="./main.js"></script>
 </body>

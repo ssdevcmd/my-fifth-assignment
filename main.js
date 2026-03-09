@@ -91,3 +91,63 @@ card.innerHTML = `
     container.appendChild(card);
   });
 }
+
+// 3 Load Single Issue (Modal)
+async function loadSingleIssue(id) {
+
+  const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+  const data = await res.json();
+
+  const issue = data.data;
+
+  document.getElementById("modal-title").innerText = issue.title;
+  document.getElementById("modal-description").innerText = issue.description;
+const statusElement = document.getElementById("modal-status");
+
+statusElement.innerText = issue.status;
+
+if (issue.status === "open") {
+  statusElement.className = "bg-green-300 px-2 py-1 rounded";
+} else {
+  statusElement.className = "bg-purple-300 px-2 py-1 rounded";
+}
+  
+
+  // format date
+  const date = new Date(issue.createdAt).toLocaleDateString();
+  document.getElementById("modal-date").innerText = date;
+
+  // labels
+  const labelsContainer = document.getElementById("modal-labels");
+  labelsContainer.innerHTML = "";
+
+  issue.labels.forEach(label => {
+    const span = document.createElement("span");
+    span.className = "px-2 py-1 bg-yellow-200 rounded text-xs";
+    span.innerText = label;
+    labelsContainer.appendChild(span);})
+
+    document.getElementById("modal-assignee").innerText = issue.assignee;
+    document.getElementById("modal-priority").innerText = issue.priority;
+  document.getElementById("issue-modal").classList.remove("hidden");
+  
+  
+}
+
+function closeModal(){
+  document.getElementById("issue-modal").classList.add("hidden");
+}
+
+// 4 Search Issues
+async function searchIssues() {
+
+  const text = document.getElementById("search-input").value;
+
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`
+  );
+
+  const data = await res.json();
+
+  displayIssues(data.data);
+}
