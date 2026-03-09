@@ -151,3 +151,28 @@ async function searchIssues() {
 
   displayIssues(data.data);
 }
+
+
+// 5 Filter Tabs 
+let allIssues = [];
+
+async function loadAllIssues() {
+  const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+  const data = await res.json();
+
+  allIssues = data.data;
+
+  displayIssues(allIssues);
+}
+
+function filterIssues(status){
+
+  if(status === "all"){
+    displayIssues(allIssues);
+    return;
+  }
+
+  const filtered = allIssues.filter(issue => issue.status === status);
+
+  displayIssues(filtered);
+}
