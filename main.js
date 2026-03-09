@@ -15,3 +15,13 @@ function toggleStyle(id) {
   selectedBtn.classList.remove("bg-white", "text-gray-500");
   selectedBtn.classList.add("bg-blue-800", "text-white");
 };
+
+// 1 Load All Issues
+async function loadAllIssues() {
+  const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+  const data = await res.json();
+
+  displayIssues(data.data); 
+}
+
+loadAllIssues();
